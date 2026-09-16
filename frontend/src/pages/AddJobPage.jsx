@@ -13,9 +13,33 @@ const AddJobPage = () => {
 
   const navigate = useNavigate();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     console.log("AddJobPage");
+  };
+
+  const addJob = async () => {
+    const newJob = {
+      title,
+      type,
+      description,
+      company: {
+        name: companyName,
+        contactEmail,
+        contactPhone,
+      },
+      location,
+      salary,
+    };
+    console.log(typeof newJob.salary)
+
+    const response = await fetch("/api/jobs", {
+      method: "POST",
+      body: JSON.stringify(newJob),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   return (
@@ -83,11 +107,10 @@ const AddJobPage = () => {
           value={salary}
           onChange={(e) => setSalary(e.target.value)}
         />
-        <button type="submit">Add Job</button>
+        <button type="submit" onClick={addJob}>Add Job</button>
       </form>
     </div>
   );
 };
 
 export default AddJobPage;
-
