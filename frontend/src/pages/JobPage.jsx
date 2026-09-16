@@ -20,7 +20,13 @@ const JobPage = () => {
   }, [id]);
 
   const deleteJob = async () => {
-    console.log(JobPage);
+    // console.log(JobPage);
+await fetch(`/api/jobs/${id}`,{
+  method: "DELETE",
+
+});
+navigate("/");
+
   };
 
   if (!job) {
