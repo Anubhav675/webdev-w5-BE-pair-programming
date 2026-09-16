@@ -1,6 +1,7 @@
 import JobListing from "../components/JobListing";
 import { useEffect, useState } from "react";
-
+import JobByType from "./JobsByType"
+import JobByLocation from "./JobsByLocation"
 const Home = () => {
   const [jobs, setJobs] = useState([]);
 
@@ -28,6 +29,10 @@ const Home = () => {
 
   return (
     <div className="home">
+      <div>
+      <JobByType/>
+      <JobByLocation/>
+      </div>
       <div className="job-list">
         {jobs.length === 0 && <p>No jobs found</p>}
         {jobs.length !== 0 &&

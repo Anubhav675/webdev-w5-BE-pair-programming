@@ -9,6 +9,8 @@ import JobPage from "./pages/JobPage";
 import EditJobPage from "./pages/EditJobPage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import JobsByType from "./pages/JobsByType";
+import Layout from "./layouts/MainLayout";
 
 
 const App = () => {
@@ -19,7 +21,9 @@ const App = () => {
           <Navbar />
           <div className="content">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home/>} />
+              {/* <Route index element={<Home/>}/> */}
+              {/* <Route path="/type" element ={<JobsByType/>}/> */}
               <Route path="/add-job" element={<AddJobPage />} />
               <Route path="/jobs/:id" element={<JobPage />} />
               <Route path="/edit-job/:id" element={<EditJobPage />} />
