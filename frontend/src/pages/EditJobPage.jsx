@@ -49,56 +49,87 @@ const EditJobPage = () => {
 
   const cancelEdit = () => {
     console.log("cancelEdit");
+
+    navigate (`/jobs/${id}`);
   };
 
-  return (
-    <div className="create">
-      <h2>Edit Job</h2>
-      <form onSubmit={submitForm}>
-        <label>Job title:</label>
-        <input value={title} onChange={(e) => setTitle(e.target.value)} />
-        <label>Job type:</label>
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="" disabled>
-            Select job type
-          </option>
-          <option value="Full-Time">Full-Time</option>
-          <option value="Part-Time">Part-Time</option>
-          <option value="Remote">Remote</option>
-          <option value="Internship">Internship</option>
-        </select>
 
-        <label>Job Description:</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-        <label>Company Name:</label>
-        <input
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-        />
-        <label>Contact Email:</label>
-        <input
-          value={contactEmail}
-          onChange={(e) => setContactEmail(e.target.value)}
-        />
-        <label>Contact Phone:</label>
-        <input
-          value={contactPhone}
-          onChange={(e) => setContactPhone(e.target.value)}
-        />
-        <label>Location:</label>
-        <input value={location} onChange={(e) => setLocation(e.target.value)} />
-        <label>Salary:</label>
-        <input value={salary} onChange={(e) => setSalary(e.target.value)} />
-        <button type="submit">Update Job</button>
-        <button type="button" onClick={cancelEdit}>
-          Cancel
-        </button>
-      </form>
-    </div>
+  const updateHandler = async () => {
+    const updatedJob = {
+      title,
+      type,
+      description,
+      company: {
+        name: companyName,
+        contactEmail,
+        contactPhone,
+      },
+      location,
+      salary,
+    };
+    console.log(updatedJob);
+
+
+    const response = await fetch(`/api/jobs/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedJob),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+   
   );
+   navigate ("/");
+  };
+
+return (
+  <div className="create">
+    <h2>Edit Job</h2>
+    <form onSubmit={submitForm}>
+      <label>Job title:</label>
+      <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      <label>Job type:</label>
+      <select value={type} onChange={(e) => setType(e.target.value)}>
+        <option value="" disabled>
+          Select job type
+        </option>
+        <option value="Full-Time">Full-Time</option>
+        <option value="Part-Time">Part-Time</option>
+        <option value="Remote">Remote</option>
+        <option value="Internship">Internship</option>
+      </select>
+
+      <label>Job Description:</label>
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      ></textarea>
+      <label>Company Name:</label>
+      <input
+        value={companyName}
+        onChange={(e) => setCompanyName(e.target.value)}
+      />
+      <label>Contact Email:</label>
+      <input
+        value={contactEmail}
+        onChange={(e) => setContactEmail(e.target.value)}
+      />
+      <label>Contact Phone:</label>
+      <input
+        value={contactPhone}
+        onChange={(e) => setContactPhone(e.target.value)}
+      />
+      <label>Location:</label>
+      <input value={location} onChange={(e) => setLocation(e.target.value)} />
+      <label>Salary:</label>
+      <input value={salary} onChange={(e) => setSalary(e.target.value)} />
+      <button type="submit" onClick={updateHandler}>Update Job</button>
+      <button type="button" onClick={cancelEdit}>
+        Cancel
+      </button>
+    </form>
+  </div>
+);
 };
 
 export default EditJobPage;
