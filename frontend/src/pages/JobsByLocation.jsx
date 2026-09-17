@@ -16,6 +16,8 @@ const JobsByLocation = () => {
       try {
         // Encode for safety in case type has spaces (“Part-time”)
         const res = await fetch(`/api/jobs/location/${encodeURIComponent(location)}`);
+        console.log("Encoded URI ==>",encodeURIComponent(location));
+        
         if (!res.ok) throw new Error("Failed to fetch jobs by location");
         const data = await res.json();
         setJobs(data);

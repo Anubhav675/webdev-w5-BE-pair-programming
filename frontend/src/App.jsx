@@ -10,7 +10,8 @@ import EditJobPage from "./pages/EditJobPage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import JobsByType from "./pages/JobsByType";
-import Layout from "./layouts/MainLayout";
+import JobsByLocation from "./pages/JobsByLocation";
+
 
 
 const App = () => {
@@ -22,8 +23,8 @@ const App = () => {
           <div className="content">
             <Routes>
               <Route path="/" element={<Home/>} />
-              {/* <Route index element={<Home/>}/> */}
-              {/* <Route path="/type" element ={<JobsByType/>}/> */}
+              <Route path="/type" element ={<JobsByType/>}/>
+              <Route path="/location" element ={<JobsByLocation/>}/>
               <Route path="/add-job" element={<AddJobPage />} />
               <Route path="/jobs/:id" element={<JobPage />} />
               <Route path="/edit-job/:id" element={<EditJobPage />} />

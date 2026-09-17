@@ -40,6 +40,7 @@ const AddJobPage = () => {
         "Content-Type": "application/json",
       },
     });
+    navigate("/");
   };
 
   return (

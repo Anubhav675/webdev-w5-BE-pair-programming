@@ -1,7 +1,6 @@
 import JobListing from "../components/JobListing";
 import { useEffect, useState } from "react";
-import JobByType from "./JobsByType"
-import JobByLocation from "./JobsByLocation"
+
 const Home = () => {
   const [jobs, setJobs] = useState([]);
 
@@ -10,14 +9,10 @@ const Home = () => {
       try {
         const res = await fetch("/api/jobs");
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
 
         setJobs(data)
-
-
-
       }
-
       catch (error) {
         console.error("fail to fetch jobs: ", error);
       }
@@ -25,13 +20,11 @@ const Home = () => {
 
     fetchData();
     console.log(jobs);
-  });
+  },[]);
 
   return (
     <div className="home">
       <div>
-      <JobByType/>
-      <JobByLocation/>
       </div>
       <div className="job-list">
         {jobs.length === 0 && <p>No jobs found</p>}
